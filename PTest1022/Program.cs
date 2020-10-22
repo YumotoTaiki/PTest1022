@@ -21,10 +21,8 @@ namespace PTest1022 {
             //６以上…「６以上です」
 
             /*** ●●● ここへ解答を入力 ●●● ***/
-            
 
-
-
+            outStr = inputNum >= 6 ? "６以上です" : "５以下です";
 
             /*** ●●●●● ここまで ●●●●● ***/
             Console.WriteLine($"結果：{outStr}\n");
@@ -35,15 +33,12 @@ namespace PTest1022 {
             int data = 0;   //エラーが出ないように初期値として０を入れている
 
             //Exam_2_Stab()を呼び出して、返ってきた整数値を変数dataに格納する。
-            //もし、nullが返ってきたら「-9999」を格納する。 
+            //もし、nullが返ってきたら「-9999」を格納する。
             //※動作チェックする場合は「Exam_2_Stab()を使用すること」
 
             /*** ●●● ここへ解答を入力 ●●● ***/
 
-
-
-
-
+            data = Exam_2_Stab() ?? -9999;
 
             /*** ●●●●● ここまで ●●●●● ***/
             Console.WriteLine($"〇問題２：{data}\n");
@@ -52,8 +47,8 @@ namespace PTest1022 {
         //問題２テスト用スタブ
         private int? Exam_2_Stab() {
             //▼▼▼▼▼　以下のコメントを切り替えて確認をする 
-            //return null;
-            return 150;
+            return null;
+            //return 150;
             //▲▲▲▲▲
         }
 
@@ -62,17 +57,15 @@ namespace PTest1022 {
             string title = "";
 
             //▼▼▼▼▼　以下のコメントを切り替えて確認をする 
-            Book book = new Book() { Title = "銀河鉄道の夜", Price = 411, Pages = 276 };
-            //Book book = new Book();
+            //Book book = new Book() { Title = "銀河鉄道の夜", Price = 411, Pages = 276 };
+            Book book = new Book();
             //▲▲▲▲▲
 
             //bookオブジェクトのタイトル名を出力せよ
             //bookオブジェクトがnullの場合はそのままnullを返却すること
             /*** ●●● ここへ解答を入力 ●●● ***/
 
-
-
-
+            title = book?.Title;
 
             /*** ●●●●● ここまで ●●●●● ***/
             //nullの場合は何も出力されません
@@ -83,19 +76,20 @@ namespace PTest1022 {
         private void Exam_4() {
             Console.WriteLine($"\n〇問題４");
             var books = new Books().GetBooks();
-            int pageSum = 0;
+            //int pageSum = 0;
 
             //金額が1200円以上の書籍を抽出せよ
             //出力については「タイトル」と「金額」を出力すること
-            
+
             /*** ●●● ここへ解答を入力 ●●● ***/
 
-
-
-
+            var selected = books.Where(x => x.Price >= 1200);
+            foreach (var y in selected) {
+                Console.WriteLine("{0}:{1}",y.Title,y.Price);
+            }
 
             /*** ●●●●● ここまで ●●●●● ***/
-            Console.WriteLine($"ページの合計は{ pageSum }ページです。");
+            //Console.WriteLine($"ページの合計は{ pageSum }ページです。");
         }
 
         //問題５
@@ -108,9 +102,10 @@ namespace PTest1022 {
 
             /*** ●●● ここへ解答を入力 ●●● ***/
 
-
-
-
+            var selected = books.Where(x => x.Pages >= 400);
+            foreach (var y in selected) {
+                Console.WriteLine("{0}:{1}", y.Title, y.Pages);
+            }
 
             /*** ●●●●● ここまで ●●●●● ***/
         }
@@ -124,9 +119,10 @@ namespace PTest1022 {
             // 出力例）79 65 53 45 35 34 20 12
             /*** ●●● ここへ解答を入力 ●●● ***/
 
-
-
-
+            var selected = numbers.OrderByDescending(x => x).Distinct();
+            foreach (var y in selected) {
+                Console.Write(y + " ");
+            }
 
             /*** ●●●●● ここまで ●●●●● ***/
         }
@@ -139,10 +135,7 @@ namespace PTest1022 {
             //引数で受け取った numbers の平均を変数 avg に求めよ
             /*** ●●● ここへ解答を入力 ●●● ***/
 
-
-
-
-
+            avg = numbers.Average();
 
             /*** ●●●●● ここまで ●●●●● ***/
 
@@ -159,12 +152,12 @@ namespace PTest1022 {
 
             /*** ●●● ここへ解答を入力 ●●● ***/
 
+            var exam8 = numbers.Select(n => n * 3);
+            foreach (var y in exam8) {
+                Console.Write(y + " ");
+            }
 
-
-
-
-
-            /*** ●●●●● ここまで ●●●●● ***/            
+            /*** ●●●●● ここまで ●●●●● ***/
         }
 
         static void Main(string[] args) {
